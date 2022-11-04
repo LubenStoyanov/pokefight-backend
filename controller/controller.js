@@ -1,6 +1,6 @@
 import pokedex from "../database/pokedex.json" assert { type: "json" };
-import Pokemons from "../model/model.js";
-const getAllPokemons = (req, res) => {
+
+const getAllPokemons = async (req, res) => {
   try {
     // const pokemons = await Pokemons.find();
     res.status(200).json(pokedex);
@@ -8,17 +8,28 @@ const getAllPokemons = (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
-const getSinglePokemon = (req, res) => {
+
+const getSinglePokemon = async (req, res) => {
   const { id } = req.params;
-  console.log("here", id);
+
   try {
     // const pokemon = await Pokemons.findById(id);
-    const pokemon = pokedex.find((p) => p.id === Number(id));
-    console.log(id);
+    const pokemon = await pokedex.find((p) => p.id === Number(id));
     res.status(200).json(pokemon);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
 };
 
-export { getAllPokemons, getSinglePokemon };
+const getInfo = async (req, res) => {
+  try {
+    const { id, info } = req.params;
+    const pokemon = await pokedex.find((p) => p.id === Number(id));
+
+    res.status(200).json(pokemon[info]);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export { getAllPokemons, getSinglePokemon, getInfo };
