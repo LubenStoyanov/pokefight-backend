@@ -8,7 +8,7 @@ import {
 const pokemonRouter = express.Router();
 
 //Get all pokemons
-pokemonRouter.route("/").get(getAllPokemons);
+pokemonRouter.route("/type/:type").get(getAllPokemons);
 //Get pokemon by id
 pokemonRouter.route("/:id").get(getSinglePokemon);
 

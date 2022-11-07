@@ -3,7 +3,9 @@ import pokedex from "../database/pokedex.json" assert { type: "json" };
 const getAllPokemons = async (req, res) => {
   try {
     // const pokemons = await Pokemons.find();
-    res.status(200).json(pokedex);
+    const { type } = req.params;
+    const pokemons = pokedex.filter((p) => p.type.includes(type));
+    res.status(200).json(pokemons);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
