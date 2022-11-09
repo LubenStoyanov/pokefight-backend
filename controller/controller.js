@@ -35,4 +35,4 @@ const getRandomPokemon = async (req, res) => {
   }
 };
 
-export { getAllPokemons, getSinglePokemon, getInfo, getRandomPokemon };
+export { getAllPokemons, getSinglePokemon, getRandomPokemon };

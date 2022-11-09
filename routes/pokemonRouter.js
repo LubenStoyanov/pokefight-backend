@@ -2,7 +2,6 @@ import express from "express";
 import {
   getAllPokemons,
   getSinglePokemon,
-  getInfo,
   getRandomPokemon,
 } from "../controller/controller.js";
 
