@@ -2,7 +2,7 @@ GET http://localhost:8080/pokemons
 ###
 GET http://localhost:8080/pokemons/5
 ###
-GET http://localhost:8080/pokemons/type/Steel
+GET http://localhost:8080/pokemons/type/All
 
 ###
 

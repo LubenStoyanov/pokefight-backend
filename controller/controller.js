@@ -5,8 +5,8 @@ const { sample } = lodash;
 const getAllPokemons = async (req, res) => {
   try {
     // const pokemons = await Pokemons.find();
-    if (type === "All") return res.status.json(pokedex);
     const { type } = req.params;
+    if (type === "All") return res.status(200).json(pokedex);
     const pokemons = pokedex.filter((p) => p.type.includes(type));
     res.status(200).json(pokemons);
   } catch (error) {
