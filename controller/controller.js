@@ -36,4 +36,14 @@ const getRandomPokemon = async (req, res) => {
   }
 };
 
-export { getAllPokemons, getSinglePokemon, getRandomPokemon };
+const getPokemonByName = async (req, res) => {
+  try {
+    const { name } = req.params;
+    const pokemon = await pokedex.find((p) => p.name.english === name);
+    res.status(200).json(pokemon);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export { getAllPokemons, getSinglePokemon, getRandomPokemon, getPokemonByName };

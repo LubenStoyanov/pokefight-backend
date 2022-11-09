@@ -3,6 +3,7 @@ import {
   getAllPokemons,
   getSinglePokemon,
   getRandomPokemon,
+  getPokemonByName,
 } from "../controller/controller.js";
 
 const pokemonRouter = express.Router();
@@ -13,5 +14,6 @@ pokemonRouter.route("/type/:type").get(getAllPokemons);
 pokemonRouter.route("/onePokemon/:id").get(getSinglePokemon);
 
 pokemonRouter.route("/random").get(getRandomPokemon);
+pokemonRouter.route("/name/:name").get(getPokemonByName);
 
 export default pokemonRouter;

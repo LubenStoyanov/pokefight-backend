@@ -7,3 +7,7 @@ GET http://localhost:8080/pokemons/type/All
 ###
 
 GET http://localhost:8080/pokemons/random
+
+###
+
+GET http://localhost:8080/pokemons/name/Pikachu
