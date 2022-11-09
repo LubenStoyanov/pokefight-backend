@@ -25,21 +25,9 @@ const getSinglePokemon = async (req, res) => {
   }
 };
 
-const getInfo = async (req, res) => {
-  try {
-    const { id, info } = req.params;
-    const pokemon = await pokedex.find((p) => p.id === Number(id));
-
-    res.status(200).json(pokemon[info]);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
 const getRandomPokemon = async (req, res) => {
   try {
     const pokemon = sample(pokedex);
-    console.log("here", pokemon);
     res.status(200).json(pokemon);
   } catch (error) {
     console.error(error);

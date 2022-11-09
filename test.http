@@ -6,4 +6,4 @@ GET http://localhost:8080/pokemons/type/Steel
 
 ###
 
-GET http://localhost:8080/pokemons/random/random/random
+GET http://localhost:8080/pokemons/random
