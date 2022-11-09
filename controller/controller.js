@@ -1,4 +1,6 @@
 import pokedex from "../database/pokedex.json" assert { type: "json" };
+import lodash from "lodash";
+const { sample } = lodash;
 
 const getAllPokemons = async (req, res) => {
   try {
@@ -34,4 +36,15 @@ const getInfo = async (req, res) => {
   }
 };
 
-export { getAllPokemons, getSinglePokemon, getInfo };
+const getRandomPokemon = async (req, res) => {
+  try {
+    const pokemon = sample(pokedex);
+    console.log("here", pokemon);
+    res.status(200).json(pokemon);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export { getAllPokemons, getSinglePokemon, getInfo, getRandomPokemon };
