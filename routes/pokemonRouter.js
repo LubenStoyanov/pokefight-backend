@@ -4,6 +4,7 @@ import {
   getSinglePokemon,
   getRandomPokemon,
   getPokemonByName,
+  getOpponents,
 } from "../controller/controller.js";
 
 const pokemonRouter = express.Router();
@@ -15,5 +16,6 @@ pokemonRouter.route("/onePokemon/:id").get(getSinglePokemon);
 
 pokemonRouter.route("/random").get(getRandomPokemon);
 pokemonRouter.route("/name/:name").get(getPokemonByName);
+pokemonRouter.route("/race/:amount").get(getOpponents);
 
 export default pokemonRouter;
