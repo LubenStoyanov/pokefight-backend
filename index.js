@@ -9,8 +9,6 @@ const port = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(cors());
-// app.use(connectDB());
-connectDB();
 
 // () => {
 //   pokedex.map(

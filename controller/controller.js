@@ -1,10 +1,11 @@
 import pokedex from "../database/pokedex.json" assert { type: "json" };
 import lodash from "lodash";
-import { Pokemon } from "../database/db.js";
+import connectDB, { Pokemon } from "../database/db.js";
 const { sample, sampleSize } = lodash;
 
 const getAllPokemons = async (req, res) => {
   try {
+    connectDB();
     const { type } = req.params;
     if (type === "All") {
       const pokemonsAll = await Pokemon.find();
@@ -22,6 +23,7 @@ const getAllPokemons = async (req, res) => {
 const getSinglePokemon = async (req, res) => {
   const { id } = req.params;
   try {
+    connectDB();
     const pokemon = await Pokemon.findOne({ imageId: id });
     // const pokemon = await pokedex.find((p) => p.id === Number(id));
     res.status(200).json(pokemon);
@@ -32,6 +34,7 @@ const getSinglePokemon = async (req, res) => {
 
 const getRandomPokemon = async (req, res) => {
   try {
+    connectDB();
     const pokemonsAll = await Pokemon.find();
     // const pokemon = sample(pokedex);
     res.status(200).json(sample(pokemonsAll));
@@ -43,6 +46,7 @@ const getRandomPokemon = async (req, res) => {
 
 const getPokemonByName = async (req, res) => {
   try {
+    connectDB();
     const { name } = req.params;
     // const pokemon = await pokedex.find((p) => p.name.english === name);
     const pokemon = await Pokemon.find({ name: { $regex: "^" + name } });
@@ -59,6 +63,7 @@ const getPokemonByName = async (req, res) => {
 
 const getOpponents = async (req, res) => {
   try {
+    connectDB();
     const { amount } = req.params;
     // const pokemons = sampleSize(pokedex, Number(amount));
     const pokemonsAll = await Pokemon.find();
