@@ -10,7 +10,7 @@ GET http://localhost:8080/pokemons/random
 
 ###
 
-GET http://localhost:8080/pokemons/name/Bulbasaur
+GET http://localhost:8080/pokemons/name/Pika
 
 ###
 

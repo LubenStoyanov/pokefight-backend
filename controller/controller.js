@@ -39,7 +39,12 @@ const getRandomPokemon = async (req, res) => {
 const getPokemonByName = async (req, res) => {
   try {
     const { name } = req.params;
-    const pokemon = await pokedex.find((p) => p.name.english === name);
+    // const pokemon = await pokedex.find((p) => p.name.english === name);
+    const pokemon = await pokedex.filter((p) =>
+      p.name.english.startsWith(name)
+    );
+    console.log(pokemon);
+    // if (!pokemon) return res.status(404);
     res.status(200).json(pokemon);
   } catch (error) {
     console.error(error);
