@@ -10,8 +10,21 @@ GET http://localhost:8080/pokemons/random
 
 ###
 
-GET http://localhost:8080/pokemons/name/asasfasd
+GET http://localhost:8080/pokemons/name/Pik
 
 ###
 
 GET http://localhost:8080/pokemons/race/5
+
+###
+
+GET http://localhost:8080/pokemons/leaderboard
+
+###
+POST http://localhost:8080/pokemons/updateplayer HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Malaiz",
+  "win": true
+}

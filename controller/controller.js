@@ -1,6 +1,6 @@
 import pokedex from "../database/pokedex.json" assert { type: "json" };
 import lodash from "lodash";
-import connectDB, { Pokemon } from "../database/db.js";
+import connectDB, { Pokemon, Player } from "../database/db.js";
 const { sample, sampleSize } = lodash;
 
 const getAllPokemons = async (req, res) => {
@@ -75,10 +75,61 @@ const getOpponents = async (req, res) => {
   }
 };
 
+const updatePlayer = async (req, res) => {
+  try {
+    connectDB();
+    const { name, win } = req.body;
+    const exists = await Player.findOne({ username: name });
+    console.log(exists);
+    if (!exists) {
+      const newPlayer = await Player.create({
+        username: name,
+        games: 0,
+        wins: 0,
+      });
+      console.log(newPlayer);
+
+      return res.status(201).json(newPlayer);
+    }
+    console.log(exists);
+    console.log(name, win);
+    if (win) {
+      const player = await Player.updateOne(
+        { username: name },
+        { $inc: { wins: 1, games: 1 } }
+      );
+      res.status(200).json(player);
+    } else {
+      const player = await Player.updateOne(
+        { username: name },
+        { $inc: { games: 1 } }
+      );
+      res.status(200).json(player);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const getPlayers = async (req, res) => {
+  try {
+    connectDB();
+    const playersAll = await Player.find();
+
+    res.status(200).json(playersAll);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export {
   getAllPokemons,
   getSinglePokemon,
   getRandomPokemon,
   getPokemonByName,
   getOpponents,
+  getPlayers,
+  updatePlayer,
 };
